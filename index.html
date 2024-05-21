@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Jack</title>
+    <link rel="stylesheet" href="blackjack.css">
+    <script src="blackjack.js"></script>
+</head>
+<body>
+    <div class="rules-container">
+        <button id="instructions-btn">Rules</button>
+        <!-- Instructions Collapsible Section -->
+        <div id="instructions" class="collapsible">
+            <div class="content">
+                <h2>Blackjack Instructions and Rules</h2>
+                <p>The objective of Blackjack is to beat the dealer's hand without going over 21.</p>
+                <p>Number cards are worth their face value, face cards (J, Q, K) are worth 10, and Aces can be worth 1 or 11.</p>
+                <p>Each player starts with two cards, one of the dealer's cards is hidden until the end.</p>
+                <p>To 'Hit' is to ask for another card. To 'Stay' is to hold your total and end your turn.</p>
+                <p>If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.</p>
+                <p>If you are dealt 21 from the start (Ace & 10), you got a blackjack.</p>
+                <p>Dealer will hit until his/her cards total 17 or higher.</p>
+                <p>Doubling is like a hit, only the bet is doubled and you only get one more card.</p>
+                <p>Split can be done when you have two of the same card - the pair is split into two hands.</p>
+                <p>Splitting also doubles the bet, because each new hand is worth the original bet.</p>
+            </div>
+        </div>
+    </div>
+    <h2>Dealer: <span id="dealer-sum"></span></h2>
+    <div id="dealer-cards" class="card-container">
+        <img id="hidden" src="./cards/BACK.png" class="card">
+    </div>
+
+    <h2>You: <span id="your-sum"></span></h2>
+    <div id="your-cards" class="card-container"></div>
+
+    <br>
+    <button id="hit">Hit</button>
+    <button id="stay">Stay</button>
+    <button id="reset">Reset</button>
+    <p id="results"></p>
+</body>
+</html> 
