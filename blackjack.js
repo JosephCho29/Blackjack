@@ -1,32 +1,10 @@
-// User StoryPseudocode
-
-//1. Declare 4 global variables.
-//    1first variable keeps track of number of cards that .ave been pulled from deck. maybe : numCardsPulled
-//    2.*actually an object* one for "player" holds entities cards, score
-//    3."dealer's - holds cards and score
-//    4.object that holds 2 functions- initialize the "deck of cards and one for shuffling deck. need to be initiated by player with a button 
-//2. Create HTML elements (two <div>s) for the card decks:
-//3. Deck 2(actually "player's hand where the cards go for player) should display an empty card outline.
-//4. Deck 3("dealer's" hand) should display an empty card outline.
-//5. Create cached element references for each of the card decks.
-//6. Add an event listener for the "hit" & "stand" button.
-//7. Write an initialization function that assigns 52 cards" to deck 1, then invoke it.
-//8. Declare a render() function to display a card after it is flipped.
-// **if possible add a bet and new game/reset feature
-
-// **if possible want to add multiple decks
-
-// **if possible add a split option?
 let dealerSum = 0;
 let yourSum = 0;
-
 let dealerAceCount = 0;
 let yourAceCount = 0;
-
 let hidden;
 let deck;
-
-let canHit = true; //allows the player (you) to draw while yourSum <= 21
+let canHit = true; //allows player to "hit" while yourSum <= 21
 
 window.onload = function() {
     buildDeck();

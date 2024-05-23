@@ -75,13 +75,13 @@ body {
 h2 {
     color: white;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black; /* black outline */
+    -webkit-text-stroke-color: black; 
 }
 
 h1 {
     color: white;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black; /* black outline */
+    -webkit-text-stroke-color: black; 
     font-size: 45px;
 }
 
