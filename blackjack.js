@@ -48,8 +48,8 @@ function buildDeck() {
 }
 
 function shuffleDeck() {
-    for (let i = 0; i < deck.length; i++) {
-        let j = Math.floor(Math.random() * deck.length); // (0-1) * 52 => (0-51.9999)
+    for (let i = 0; i < deck.length; i++) { // 
+        let j = Math.floor(Math.random() * deck.length); // Math.random gives a number from 0-1 * 52 (# of cards) => (0-51.9999) (math.floor rounds the number)
         [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     console.log(deck);
@@ -95,7 +95,7 @@ function startGame() {
 
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
-    document.getElementById("reset").addEventListener("click", resetGame); // Add this line
+    document.getElementById("reset").addEventListener("click", resetGame); 
 }
 
 function hit() {
@@ -141,7 +141,7 @@ function stay() {
             document.getElementById("dealer-cards").append(cardImg);
             dealerSum = reduceAce(dealerSum, dealerAceCount);
             
-            setTimeout(dealerHit, 1000); // Delay of 1 second before next card is drawn
+            setTimeout(dealerHit, 1000); // 1 second delay before next card
         } else {
             let message = "";
             if (yourSum > 21) {
@@ -198,23 +198,23 @@ function reduceAce(playerSum, playerAceCount) {
 }
 
 function resetGame() {
-    // Reset sums and ace counts
+    // Reset everything shown
     dealerSum = 0;
     yourSum = 0;
     dealerAceCount = 0;
     yourAceCount = 0;
 
-    // Clear the UI elements
+    // Clears  the elements for a reset
     document.getElementById("dealer-cards").innerHTML = '<img id="hidden" src="./cards/BACK.png" class="card">';
     document.getElementById("your-cards").innerHTML = '';
     document.getElementById("dealer-sum").innerText = '';
     document.getElementById("your-sum").innerText = '';
     document.getElementById("results").innerText = '';
 
-    // Reset canHit
+    // Reset  from false again
     canHit = true;
 
-    // Rebuild and shuffle the deck
+    // Rebuilds and shuffles deck for a fresh start
     buildDeck();
     shuffleDeck();
 
@@ -235,3 +235,4 @@ function setupInstructionsToggle() {
     });
 }
 
+//CHANGE FILE AND FOLDER SRTUCTURE

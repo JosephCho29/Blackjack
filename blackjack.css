@@ -1,6 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    background-color: #138808;
 }
 
 #dealer-cards img, #your-cards img {
@@ -44,7 +45,7 @@ body {
 }
 
 .collapsible.expanded {
-    display: block; /* Show the collapsible section when expanded */
+    display: block; /* Show the collapsible section when expantded */
 }
 
 .collapsible.expanded .content {
@@ -67,3 +68,23 @@ body {
     animation: slideInFromTop 0.5s ease-out;
 }
 
+.instructions {
+    color: black;
+}
+
+h2 {
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; /* black outline */
+}
+
+h1 {
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black; /* black outline */
+    font-size: 45px;
+}
+
+#results {
+    font-size: 40px;
+}
