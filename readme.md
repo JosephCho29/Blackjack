@@ -4,6 +4,9 @@ This is my attempt at making a blackjack game with just JS, HTML and CSS.
 
 [Link to Joseph's BlackJack Game](https://josephcho29.github.io/Blackjack/)
 
+![mobile](./img/Mobile.png)
+![desktop](./img/Desktop.png)
+
 ## **Basic Rules to the game:
 
 1. The objective of Blackjack is to beat the dealer's hand without going over 21.
