@@ -6,23 +6,12 @@
 //    3."dealer's - holds cards and score
 //    4.object that holds 2 functions- initialize the "deck of cards and one for shuffling deck. need to be initiated by player with a button 
 //2. Create HTML elements (two <div>s) for the card decks:
-//1. Deck 1(dealer's deck) should display the back of a card with a shadow outline, indicating a larger stack.
-//2. Deck 2(actually "player's hand where the cards go for player) should display an empty card outline.
-//3. Deck 3("dealer's" hand) should display an empty card outline.
-//3. Create cached element references for each of the card decks.
-//4. Add an event listener for the "hit" & "stand" button.
-//5. Write an initialization function that assigns 52 cards" to deck 1, then invoke it.
-//6. Declare a render() function to display a card after it is flipped.
-//7. Stub up a handleClick() function for the event listener to call.
-//1. Select a random card from deck 1.
-//2. Remove the card from deck 1.
-//3. Add the card to deck 2 or 3.
-//4. Call the render() function and pass the card to it.
-//8. Within the render() function (situated above handleClick()):
-//1. After the first card is picked, remove the outline on deck 2.
-// 2. Add the class name to display the card picked on deck 2 or 3.
-
-
+//3. Deck 2(actually "player's hand where the cards go for player) should display an empty card outline.
+//4. Deck 3("dealer's" hand) should display an empty card outline.
+//5. Create cached element references for each of the card decks.
+//6. Add an event listener for the "hit" & "stand" button.
+//7. Write an initialization function that assigns 52 cards" to deck 1, then invoke it.
+//8. Declare a render() function to display a card after it is flipped.
 // **if possible add a bet and new game/reset feature
 
 // **if possible want to add multiple decks
@@ -43,7 +32,7 @@ window.onload = function() {
     buildDeck();
     shuffleDeck();
     startGame();
-    setupInstructionsToggle(); // Add this line
+    setupInstructionsToggle(); 
 }
 
 function buildDeck() {
@@ -61,35 +50,35 @@ function buildDeck() {
 function shuffleDeck() {
     for (let i = 0; i < deck.length; i++) {
         let j = Math.floor(Math.random() * deck.length); // (0-1) * 52 => (0-51.9999)
-        let temp = deck[i];
-        deck[i] = deck[j];
-        deck[j] = temp;
+        [deck[i], deck[j]] = [deck[j], deck[i]];
     }
     console.log(deck);
 }
 
 function startGame() {
-    // Dealer's first card (hidden)
+    // Dealer's first card (hidden) only shows back of card
     hidden = deck.pop();
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
     
     // Dealer's second card
-    let cardImg1 = document.createElement("img");
-    let card1 = deck.pop();
-    cardImg1.src = "./cards/" + card1 + ".png";
-    cardImg1.classList.add("card");
-    cardImg1.setAttribute("data-index", 1);
-    dealerSum += getValue(card1);
-    dealerAceCount += checkAce(card1);
-    document.getElementById("dealer-cards").append(cardImg1);
-    console.log(`Dealer's visible card: ${card1}, dealerSum: ${dealerSum}`);
+    let cardImg = document.createElement("img");
+    let card = deck.pop();
+    cardImg.src = "./cards/" + card + ".png";
+    cardImg.alt = "Dealer's card " + card;
+    cardImg.classList.add("card");
+    cardImg.setAttribute("data-index", 1);
+    dealerSum += getValue(card);
+    dealerAceCount += checkAce(card);
+    document.getElementById("dealer-cards").append(cardImg);
+    console.log(`Dealer's visible card: ${card}, dealerSum: ${dealerSum}`);
 
     // Player's initial two cards
     for (let i = 0; i < 2; i++) {
         let cardImg = document.createElement("img");
         let card = deck.pop();
         cardImg.src = "./cards/" + card + ".png";
+        cardImg.alt = "Your card " + card;
         cardImg.classList.add("card");
         cardImg.setAttribute("data-index", i + 1);
         yourSum += getValue(card);
@@ -138,41 +127,46 @@ function hit() {
 function stay() {
     canHit = false;
     document.getElementById("hidden").src = "./cards/" + hidden + ".png";
-
     dealerSum = reduceAce(dealerSum, dealerAceCount);
     yourSum = reduceAce(yourSum, yourAceCount);
 
-    while (dealerSum < 17) {
-        let cardImg = document.createElement("img");
-        let card = deck.pop();
-        cardImg.src = "./cards/" + card + ".png";
-        cardImg.classList.add("card");
-        dealerSum += getValue(card);
-        dealerAceCount += checkAce(card);
-        document.getElementById("dealer-cards").append(cardImg);
-        dealerSum = reduceAce(dealerSum, dealerAceCount);
-    }
+    const dealerHit = () => {
+        if (dealerSum < 17) {
+            let cardImg = document.createElement("img");
+            let card = deck.pop(); // removes last card from deck which simulates drawing card from top
+            cardImg.src = "./cards/" + card + ".png";
+            cardImg.classList.add("card");
+            dealerSum += getValue(card);
+            dealerAceCount += checkAce(card);
+            document.getElementById("dealer-cards").append(cardImg);
+            dealerSum = reduceAce(dealerSum, dealerAceCount);
+            
+            setTimeout(dealerHit, 1000); // Delay of 1 second before next card is drawn
+        } else {
+            let message = "";
+            if (yourSum > 21) {
+                message = "Bust! You lose!";
+            }
+            else if (dealerSum > 21) {
+                message = "You win!";
+            }
+            else if (yourSum == dealerSum) {
+                message = "Tie!";
+            }
+            else if (yourSum > dealerSum) {
+                message = "You Win!";
+            }
+            else if (yourSum < dealerSum) {
+                message = "You Lose!";
+            }
+            //Updates the displayed values for the sums and the result message
+            document.getElementById("dealer-sum").innerText = dealerSum;
+            document.getElementById("your-sum").innerText = yourSum;
+            document.getElementById("results").innerText = message;
+        }
+    };
 
-    let message = "";
-    if (yourSum > 21) {
-        message = "Bust! You lose!";
-    }
-    else if (dealerSum > 21) {
-        message = "You win!";
-    }
-    else if (yourSum == dealerSum) {
-        message = "Tie!";
-    }
-    else if (yourSum > dealerSum) {
-        message = "You Win!";
-    }
-    else if (yourSum < dealerSum) {
-        message = "You Lose!";
-    }
-
-    document.getElementById("dealer-sum").innerText = dealerSum;
-    document.getElementById("your-sum").innerText = yourSum;
-    document.getElementById("results").innerText = message;
+    dealerHit();
 }
 
 function getValue(card) {
@@ -240,3 +234,4 @@ function setupInstructionsToggle() {
         }
     });
 }
+

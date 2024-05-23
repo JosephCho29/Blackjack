@@ -10,9 +10,9 @@ body {
 }
 
 #hit, #stay, #reset, #instructions-btn {
-    width: 85px;
+    width: 90px;
     height: 42px;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .rules-container {
