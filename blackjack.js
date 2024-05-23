@@ -26,11 +26,11 @@ function buildDeck() {
 }
 
 function shuffleDeck() {
-    for (let i = 0; i < deck.length; i++) { // 
+    for (let i = 0; i < deck.length; i++) { // loops over each element in deck array, starting at 0 incremeting by 1 until deck length -1
         let j = Math.floor(Math.random() * deck.length); // Math.random gives a number from 0-1 * 52 (# of cards) => (0-51.9999) (math.floor rounds the number)
-        [deck[i], deck[j]] = [deck[j], deck[i]];
+        [deck[i], deck[j]] = [deck[j], deck[i]]; //de-structuring the array to swap the elements to simulate a shuffling algorithm.
     }
-    console.log(deck);
+    // console.log(deck);
 }
 
 function startGame() {
@@ -40,16 +40,16 @@ function startGame() {
     dealerAceCount += checkAce(hidden);
     
     // Dealer's second card
-    let cardImg = document.createElement("img");
-    let card = deck.pop();
+    let cardImg = document.createElement("img");//creates element for new card image(new card coming)//
+    let card = deck.pop(); //pops out card from the end simulating drawing card from top//
     cardImg.src = "./cards/" + card + ".png";
     cardImg.alt = "Dealer's card " + card;
-    cardImg.classList.add("card");
-    cardImg.setAttribute("data-index", 1);
+    cardImg.classList.add("card"); //adding class named "card" to cardImg for the animation
+    cardImg.setAttribute("data-index", 1);//numbers the cards by giving data index of 1 or 2
     dealerSum += getValue(card);
     dealerAceCount += checkAce(card);
     document.getElementById("dealer-cards").append(cardImg);
-    console.log(`Dealer's visible card: ${card}, dealerSum: ${dealerSum}`);
+    // console.log(`Dealer's visible card: ${card}, dealerSum: ${dealerSum}`);
 
     // Player's initial two cards
     for (let i = 0; i < 2; i++) {
@@ -64,7 +64,7 @@ function startGame() {
         document.getElementById("your-cards").append(cardImg);
     }
 
-    console.log(`Your initial sum: ${yourSum}`);
+    // console.log(`Your initial sum: ${yourSum}`);
     
     if (yourSum === 21) {
         canHit = false;
@@ -212,5 +212,3 @@ function setupInstructionsToggle() {
         }
     });
 }
-
-//CHANGE FILE AND FOLDER SRTUCTURE
