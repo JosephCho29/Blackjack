@@ -152,16 +152,16 @@ function getValue(card) {
     let value = data[0];
 
     if (isNaN(value)) { //A J Q K
-        if (value == "A") {
+        if (value == "A") { // checking for Ace otherwise gives 10 to face cards
             return 11;
         }
         return 10;
     }
-    return parseInt(value);
+    return parseInt(value); /* parses a string and returns an integer */
 }
 
 function checkAce(card) {
-    if (card[0] == "A") {
+    if (card[0] == "A") { //giving the count of Aces so that we can use to subtract if needed later
         return 1;
     }
     return 0;
