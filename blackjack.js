@@ -4,7 +4,7 @@ let dealerAceCount = 0;
 let yourAceCount = 0;
 let hidden;
 let deck;
-let canHit = true; //allows player to "hit" while yourSum <= 21
+let canHit = true; //allows you to "hit" while yourSum less than 21
 
 window.onload = function() {
     buildDeck();
@@ -16,10 +16,10 @@ window.onload = function() {
 function buildDeck() {
     let values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     let types = ["C", "D", "H", "S"];
-    deck = [];
+    deck = [];//initialize with empty array
 
     for (let i = 0; i < types.length; i++) {
-        for (let j = 0; j < values.length; j++) {
+        for (let j = 0; j < values.length; j++) { //this goes through all values above (i and j) to create a deck of 52
             deck.push(values[j] + "-" + types[i]); //A-C -> K-C, A-D -> K-D
         }
     }

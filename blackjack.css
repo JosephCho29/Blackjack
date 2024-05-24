@@ -5,9 +5,9 @@ body {
 }
 
 #dealer-cards img, #your-cards img {
-    height: 175px;
-    width: 125px;
-    margin: 1px;
+    height: 170px;
+    width: 120px;
+    margin: 2px;
 }
 
 #hit, #stay, #reset, #instructions-btn {
@@ -21,7 +21,6 @@ body {
     padding: 0;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
     position: relative;
 }
 
@@ -34,9 +33,10 @@ body {
     border: 1px solid #ddd;
     background-color: #f9f9f9;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: none; /* Hide the collapsible section initially */
+    display: none; /* Hides the collapsible section initially and shows after click*/
 }
 
+/* gives the rules box the scroll down  */
 .collapsible .content {
     max-height: 0;
     overflow: hidden;
@@ -49,7 +49,7 @@ body {
 }
 
 .collapsible.expanded .content {
-    max-height: 500px; /* Adjust this value based on the content height */
+    max-height: 500px; 
     overflow: auto;
 }
 
